@@ -31,8 +31,18 @@ Module.register("helloworld", {
 	socketNotificationReceived: function (notification, payload) {
 		Log.log("Received the notification on the module: " + notification + " " + payload);
 		if (notification === "TODO_LIST") {
-			console.log("Main file receivied: " + payload);
-			this.todoList = payload;
+			console.log("Main file receivied TODO List 1: " + payload);
+			console.log("Main file receivied TODO List 2: " + JSON.stringify(payload));
+			this.todoList = payload;			
+			var todoListDiv = document.getElementById("todoListDiv");
+			for (var key in this.todoList) { 
+				console.log(key);
+				console.log(this.todoList[key]);
+				// create
+				var todoDiv = document.createElement("div");
+				todoDiv.innerHTML = this.todoList[key];
+				todoListDiv.appendChild(todoDiv);
+			}			
 		}
 	}
 });
